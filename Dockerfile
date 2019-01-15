@@ -22,6 +22,6 @@ COPY files/settings.xml "$JENKINS_HOME/.m2"
 
 USER root
 
-EXPOSE 22
+EXPOSE 2022
 
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-p 2022", "-D"]
