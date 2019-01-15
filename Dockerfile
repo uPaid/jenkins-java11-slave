@@ -14,6 +14,14 @@ RUN mkdir -p /var/run/sshd
 RUN echo "jenkins:jenkins" | chpasswd
 RUN mkdir /home/jenkins/.ssh ; chmod 700 /home/jenkins/.ssh ; printf "Host review.upaid.pl\n  KexAlgorithms +diffie-hellman-group1-sha1" >/home/jenkins/.ssh/config
 
+USER jenkins
+
+RUN mkdir "$JENKINS_HOME/.m2"
+
+COPY files/settings.xml "$JENKINS_HOME/.m2"
+
+USER root
+
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
