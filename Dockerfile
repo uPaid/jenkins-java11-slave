@@ -24,4 +24,4 @@ USER root
 
 EXPOSE 2022
 
-CMD ["/usr/sbin/sshd", "-p 2022", "-D"]
+CMD env | grep _SETTINGS_ >> /etc/environment && /usr/sbin/sshd -p 2022 -D
