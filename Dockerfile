@@ -12,9 +12,10 @@ RUN useradd -d "$JENKINS_HOME" -m -s /bin/bash ${user}
 RUN sed -i 's|session required pam_loginuid.so|session optional pam_loginuid.so|g' /etc/pam.d/sshd
 RUN mkdir -p /var/run/sshd
 
+RUN echo "jenkins:jenkins" | chpasswd
+
 USER jenkins
 
-RUN echo "jenkins:jenkins" | chpasswd
 RUN mkdir /home/jenkins/.ssh ; chmod 700 /home/jenkins/.ssh ; printf "Host review.upaid.pl\n  KexAlgorithms +diffie-hellman-group1-sha1" >/home/jenkins/.ssh/config
 
 RUN mkdir "$JENKINS_HOME/.m2"
