@@ -5,7 +5,7 @@ ARG user=jenkins
 ENV JENKINS_HOME /home/jenkins
 
 RUN apt-get update -qqy \
-  && apt-get -qqy install openssh-server git \
+  && apt-get -qqy install openssh-server git ruby \
   && apt-get clean
 
 RUN useradd -d "$JENKINS_HOME" -m -s /bin/bash ${user}
